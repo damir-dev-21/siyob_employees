@@ -14,7 +14,12 @@ body {
     border-radius: 5px;
     padding: 20px;
 }
-
+.auth-page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .login-container {
     background-color: white;
     padding: 40px;
@@ -64,6 +69,8 @@ body {
     width: auto;
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    justify-content: center;
     /* Изменил на auto для центрирования кнопки */
 }
 
@@ -91,6 +98,7 @@ body {
 }
 
 .form-container {
+    
     display: flex;
     flex-direction: column;
     align-items: center;

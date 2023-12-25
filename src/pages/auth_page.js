@@ -14,16 +14,19 @@ function AuthPage({auth}){
     }
 
   return (
-            <div class="login-container">
-                <h1>SIYOB</h1>
-                <form onSubmit={(e)=>e.preventDefault()}  method="post">
-                <input type="text" id="login" name="login" placeholder="Логин" value={login} onChange={(e) => setLogin(e.target.value)} />
-                <input type="password" id="password" name="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
-                {/* <NavLink to={'/main'}> */}
-                    <button type="submit" onClick={() => handleSubmit(true)}>Войти</button>
-                {/* </NavLink> */}
-                </form>
-            </div>
+    <div className='auth-page'>
+          <div class="login-container">
+              <h1>SIYOB</h1>
+              <form onSubmit={(e) => e.preventDefault()} method="post">
+                  <input type="text" id="login" name="login" placeholder="Логин" value={login} onChange={(e) => setLogin(e.target.value)} />
+                  <input type="password" id="password" name="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  {/* <NavLink to={'/main'}> */}
+                  <button type="submit" onClick={() => handleSubmit(true)}>Войти</button>
+                  {/* </NavLink> */}
+              </form>
+          </div>
+    </div>
+            
         
     )
 }
