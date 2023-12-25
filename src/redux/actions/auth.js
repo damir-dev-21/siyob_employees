@@ -3,25 +3,23 @@ import { AUTH_OVER, AUTH_START } from "./actionType";
 
 export function auth(username, password, isLogin) {
     return async (dispatch) => {
-        // const url = "http://127.0.0.1:8000/api"
+        const url = "http://web.corp.siyob.uz:9696/ZUP/hs/api/check_user/"
 
-        let newData = {
-            username,
-            password
-        }
 
-        // const expirationDate = new Date(new Date().getTime() + new Date().getDate() * 1000);
-
-        console.log(isLogin);
         if (isLogin) {
-            newData = {
-                username,
-                password
-            }
-            // const responce = await axios.post(url + "/login/", newData)
-            // const data = responce.data
-            console.log(newData);
-            localStorage.setItem('username', newData.username);
+            
+
+            // Кодирование учетных данных в Base64
+            const basicAuth = 'Basic ' + btoa(username + ':' + password);
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': basicAuth
+                // Другие заголовки при необходимости
+            };
+            const responce = await axios.get(url, { headers: headers })
+            const data = responce.data
+            console.log(responce.status);
+            localStorage.setItem('username', username);
 
             dispatch(authStart(username, true))
             //dispatch(inLogoutTime(data.expiresIn))
