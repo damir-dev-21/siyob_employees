@@ -1,0 +1,259 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.file_select{
+    border:1px solid grey;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    /* Увеличенная ширина */
+}
+
+.login-container h1 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    /* Увеличенный размер шрифта */
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container input {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    /* Увеличенный размер шрифта */
+}
+
+.login-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    /* Увеличенный размер шрифта */
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    /* Изменил на auto для центрирования кнопки */
+}
+
+.button-container button{
+    margin-bottom: 20px;
+}
+
+.full-width-button {
+    min-width: 300px;
+    /* Установил минимальную ширину */
+    padding: 25px;
+    /* Увеличил отступы для большего размера кнопки */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    /* Увеличил размер шрифта */
+    cursor: pointer;
+    border-radius: 10px;
+    /* Добавил скругление углов */
+}
+
+.full-width-button:hover {
+    background-color: #0056b3;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container input,
+.form-container button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-container .row {
+    display: flex;
+}
+
+.form-container .row input {
+    margin-right: 10px;
+}
+
+.inps-button,
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.inps-button:hover,
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+
+/* Стили существующей страницы */
+/* ... */
+
+/* Стили существующей страницы */
+/* ... */
+
+/* Стили модального окна */
+.modal {
+    display: none;
+    /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    /* Ширина модального окна */
+    text-align: center;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.checkmark {
+    font-size: 2rem;
+    color: green;
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 80%;
+        /* Более широкое модальное окно для мобильных устройств */
+    }
+}
+
+
+/* Медиа-запросы для мобильных устройств (менее 600px) */
+@media (max-width: 600px) {
+    .login-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .login-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .login-container input,
+    .login-container button {
+        font-size: 1rem;
+    }
+}
+
+/* Дополнительные медиа-запросы для более мелких мобильных телефонов */
+@media (max-width: 400px) {
+    .login-container {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .login-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .login-container input,
+    .login-container button {
+        font-size: 0.9rem;
+    }
+}
+
+/* Медиа-запросы для планшетов */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .login-container {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        /* width: 100%; */
+        /* Контейнер занимает всю ширину на мобильных устройствах */
+        padding: 25px;
+        margin: 10px;
+        /* Уменьшенный отступ для мобильных устройств */
+    }
+
+    .form-container .row input {
+        margin-right: 0;
+        margin-bottom: 10px;
+        /* Добавлен отступ между полями ввода в строке */
+    }
+
+    .form-container .row {
+        flex-direction: row;
+        /* Поля в строке теперь становятся в колонку */
+    }
+}

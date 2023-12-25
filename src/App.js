@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom'
+import {useState,useEffect} from 'react'
+import AuthPage from './pages/auth_page'
+import MainPage from './pages/main_page'
+import AddEmployee from './pages/add_employee_page'
+import { connect } from "react-redux";
 
-function App() {
+function App({isAuth}) {
+  const [username, setUsername] = useState('')
+
+  useEffect(()=>{
+    var username = localStorage.getItem('username')
+    if(username != null){
+      setUsername(username)
+    }
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        isAuth ?
+        <Routes>
+          <Route exact path="/" element={<MainPage />}></Route>
+          <Route path="/add-employee" element={<AddEmployee />}></Route>
+
+        </Routes>
+        :
+          <Routes>
+            <Route exact path="/" element={<AuthPage />}></Route>
+          </Routes>
+      }
     </div>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    isAuth: state.auth.isAuth
+  }
+}
+
+export default connect(mapStateToProps, null)(App);
