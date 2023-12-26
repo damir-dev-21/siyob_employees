@@ -13,7 +13,8 @@ export function auth(username, password, isLogin) {
             const basicAuth = 'Basic ' + btoa(username + ':' + password);
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': basicAuth
+                'Authorization': basicAuth,
+                'Access-Control-Allow-Origin':true
                 // Другие заголовки при необходимости
             };
             const responce = await axios.get(url, { headers: headers })
