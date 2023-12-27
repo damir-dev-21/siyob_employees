@@ -1,6 +1,13 @@
 import axios from "axios";
 import { AUTH_OVER, AUTH_START } from "./actionType";
 
+
+function encodeToBase64(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
+}
+
 export function auth(username, password, isLogin) {
     return async (dispatch) => {
         const url = "http://web.corp.siyob.uz:9696/ZUP/hs/api/check_user/"
@@ -10,19 +17,24 @@ export function auth(username, password, isLogin) {
             
 
             // Кодирование учетных данных в Base64
-            const basicAuth = 'Basic ' + btoa(username + ':' + password);
+            const basicAuth = 'Basic ' + encodeToBase64(username + ':' + password);
             const headers = {
-                'Content-Type': 'application/json',
                 'Authorization': basicAuth,
-                'Access-Control-Allow-Origin':true
-                // Другие заголовки при необходимости
             };
-            const responce = await axios.get(url, { headers: headers })
-            const data = responce.data
-            console.log(responce.status);
-            localStorage.setItem('username', username);
+            try {
+                // const responce = await axios.get(url, { headers: headers })
+                // if (responce.status === 200) {
+                    localStorage.setItem('username', username);
+                    dispatch(authStart(username, true))
+                // } 
+            } catch (error) {
+                console.error("Error during the request:", error);
+                dispatch(authStart("", false))
+            }
+           
+            
 
-            dispatch(authStart(username, true))
+            
             //dispatch(inLogoutTime(data.expiresIn))
         } else {
             console.log("Ошибка");
