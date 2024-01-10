@@ -11,15 +11,8 @@ function encodeToBase64(str) {
 export function auth(username, password, isLogin) {
     return async (dispatch) => {
         const url = "https://siyobzup.xyz/api/login/"
-
-
-        if (isLogin) {
-            
-
-            // Кодирование учетных данных в Base64
-            const basicAuth = 'Basic ' + encodeToBase64(username + ':' + password);
+            // const basicAuth = 'Basic ' + encodeToBase64(username + ':' + password);
             const headers = {
-                // 'Authorization': basicAuth,
                 'Content-Type': 'application/json'
             };
             try {
@@ -27,23 +20,11 @@ export function auth(username, password, isLogin) {
                 if (responce.status === 200) {
                     localStorage.setItem('username', username);
                     dispatch(authStart(username, true))
-                } 
+                }
             } catch (error) {
-                console.error("Error during the request:", error);
-                dispatch(authStart("", false))
+                console.log("authOver");
+                dispatch(authOver())
             }
-           
-            
-
-            
-            //dispatch(inLogoutTime(data.expiresIn))
-        } else {
-            console.log("Ошибка");
-            // const responce = await axios.post(url + "/register/", JSON.stringify(newData))
-            // const data = responce.data
-            // console.log(data);
-        }
-
     }
 }
 

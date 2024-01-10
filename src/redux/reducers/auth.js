@@ -1,7 +1,7 @@
 import { AUTH_OVER, AUTH_START } from "../actions/actionType";
 
 const initialState = {
-    isAuth: localStorage.getItem('username')  !== null ? true: false,
+    isAuth: localStorage.getItem('username')  !== null ? true: null,
     username: localStorage.getItem('username')
 }
 
