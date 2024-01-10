@@ -16,7 +16,6 @@ function MainPage(){
                 <NavLink to={"/add-employee"}>
                     <button type="button" class="full-width-button">Табель</button>
                 </NavLink>
-               
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ function encodeToBase64(str) {
 
 export function auth(username, password, isLogin) {
     return async (dispatch) => {
-        const url = "http://web.corp.siyob.uz:9696/ZUP/hs/api/check_user/"
+        const url = "https://siyobzup.xyz/api/login/"
 
 
         if (isLogin) {
@@ -19,14 +19,14 @@ export function auth(username, password, isLogin) {
             // Кодирование учетных данных в Base64
             const basicAuth = 'Basic ' + encodeToBase64(username + ':' + password);
             const headers = {
-                'Authorization': basicAuth,
+                // 'Authorization': basicAuth,
             };
             try {
-                // const responce = await axios.get(url, { headers: headers })
-                // if (responce.status === 200) {
+                const responce = await axios.post(url, JSON.stringify({"username":username,"password":password}),{ headers: headers })
+                if (responce.status === 200) {
                     localStorage.setItem('username', username);
                     dispatch(authStart(username, true))
-                // } 
+                } 
             } catch (error) {
                 console.error("Error during the request:", error);
                 dispatch(authStart("", false))
