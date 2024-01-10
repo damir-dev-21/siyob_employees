@@ -20,9 +20,7 @@ export function auth(username, password, isLogin) {
             const basicAuth = 'Basic ' + encodeToBase64(username + ':' + password);
             const headers = {
                 // 'Authorization': basicAuth,
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Headers": "X-Requested-With"
+                'Content-Type': 'application/json'
             };
             try {
                 const responce = await axios.post(url, JSON.stringify({"username":username,"password":password}),{ headers: headers })
