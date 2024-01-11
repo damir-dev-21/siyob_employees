@@ -3,6 +3,8 @@ import {useState,useEffect} from 'react'
 import AuthPage from './pages/auth_page'
 import MainPage from './pages/main_page'
 import AddEmployee from './pages/add_employee_page'
+import SoonPage from './pages/soon_page'
+
 import { connect } from "react-redux";
 
 function App({isAuth}) {
@@ -22,6 +24,7 @@ function App({isAuth}) {
         <Routes>
           <Route exact path="/" element={<MainPage />}></Route>
           <Route path="/add-employee" element={<AddEmployee />}></Route>
+          <Route path="/soon" element={<SoonPage />}></Route>
 
         </Routes>
         :

@@ -7,13 +7,13 @@ function MainPage(){
                 <NavLink to={"/add-employee"}>
                     <button type="button" class="full-width-button">Заявление на прием</button>
                 </NavLink>
-                <NavLink to={"/add-employee"}>
+                <NavLink to={"/soon"}>
                     <button type="button" class="full-width-button">Приказ на увольнение</button>
                 </NavLink>
-                <NavLink to={"/add-employee"}>
+                <NavLink to={"/soon"}>
                     <button type="button" class="full-width-button">Отпуск</button>
                 </NavLink>
-                <NavLink to={"/add-employee"}>
+                <NavLink to={"/soon"}>
                     <button type="button" class="full-width-button">Табель</button>
                 </NavLink>
             </div>
