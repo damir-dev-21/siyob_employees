@@ -18,6 +18,7 @@ function AddEmployee() {
     const [modalLoadingVisible, setModalLoadingVisible] = useState(false);
     const [modalSuccessVisible, setModalSuccessVisible] = useState(false);
     const [modalInfoVisible, setModalInfoVisible] = useState(false);
+    const [modalErrorVisible, setModalErrorVisible] = useState(false);
 
     let _files = []
 
@@ -113,10 +114,18 @@ function AddEmployee() {
                     setModalSuccessVisible(false);
                 }, 3000);
                 // clearInterval(interval)
-
-                console.log(extractedData);
-            } else {
-
+                setName("")
+                setSurname("")
+                setLastName("")
+                setInps("")
+                setPassportNumber("")
+                setPassportSerial("")
+                setInps("")
+                setDateOfBirthday("")
+            } else if(responce.status == 400) {
+                setModalInfoVisible(true) 
+            }else {
+                setModalErrorVisible(true) 
             }
         } catch (error) {
             setModalLoadingVisible(false)
@@ -131,6 +140,7 @@ function AddEmployee() {
             {modalLoadingVisible && <ModalLoading onClose={() => setModalVisible(false)} />}
             {modalSuccessVisible && <ModalSuccess onClose={() => setModalVisible(false)} />}
             {modalInfoVisible && <ModalInfo onClose={() => setModalVisible(false)} />}
+            {modalErrorVisible && <ModalError onClose={() => setModalVisible(false)} />}
 
             <div class="form-container">
                 <input type="text" id="firstname" name="firstname" onChange={(e)=>setName(e.target.value)} value={name} placeholder="Имя" />
@@ -241,6 +251,24 @@ const ModalInfo= ({ onClose }) => {
             borderRadius: '10px'
         }}>
             <p>Заполнены не все поля</p>
+        </div>
+    );
+};
+
+const ModalError= ({ onClose }) => {
+    return (
+        <div style={{
+            position: 'fixed',
+            top: '20%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'red',
+            padding: '10px',
+            color: "white",
+            zIndex: 1000,
+            borderRadius: '10px'
+        }}>
+            <p>Произошла ошибка сервера</p>
         </div>
     );
 };
