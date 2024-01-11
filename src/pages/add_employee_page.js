@@ -80,7 +80,11 @@ function AddEmployee() {
 
     const postData = async () => {
         if(name == '' || surName == '' || lastName == '' || post == '' || inps == '' || passportNumber == '' || passportNumber == 0 || dateOfBirthday == ''){
-            setModalInfoVisible(true)
+            setModalInfoVisible(true);
+            const interval = setInterval(() => {
+                setModalInfoVisible(false);
+            }, 3000);
+            clearInterval(interval)
             return
         }
 
@@ -101,8 +105,9 @@ function AddEmployee() {
             if (responce.status == 200) {
                 let extractedData = responce.data;
                 setModalLoadingVisible(false);
+                setModalInfoVisible(true);
                 const interval = setInterval(() => {
-                    setModalVisible(false);
+                    setModalInfoVisible(false);
                 }, 3000);
                 clearInterval(interval)
 
