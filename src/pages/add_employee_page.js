@@ -19,6 +19,7 @@ function AddEmployee() {
     const [modalSuccessVisible, setModalSuccessVisible] = useState(false);
     const [modalInfoVisible, setModalInfoVisible] = useState(false);
     const [modalErrorVisible, setModalErrorVisible] = useState(false);
+    const [modalInfoInpsVisible, setModalInfoInpsVisible] = useState(false);
 
     let _files = []
 
@@ -56,6 +57,15 @@ function AddEmployee() {
     };
 
     const getData = async () => {
+
+        if(passportNumber == "" || passportSerial == "" || dateOfBirthday == ""){
+
+            setModalInfoInpsVisible(true);
+            const interval = setInterval(() => {
+                setModalInfoInpsVisible(false);
+            }, 3000);
+            return
+        }
        
         try {
             setModalVisible(true);
@@ -141,6 +151,7 @@ function AddEmployee() {
             {modalSuccessVisible && <ModalSuccess onClose={() => setModalVisible(false)} />}
             {modalInfoVisible && <ModalInfo onClose={() => setModalVisible(false)} />}
             {modalErrorVisible && <ModalError onClose={() => setModalVisible(false)} />}
+            {modalInfoInpsVisible && <ModalInpsInfo onClose={() => setModalVisible(false)} />}
 
             <div class="form-container">
                 <input type="text" id="firstname" name="firstname" onChange={(e)=>setName(e.target.value)} value={name} placeholder="Имя" />
@@ -196,7 +207,7 @@ const Modal = ({ onClose }) => {
             zIndex: 1000,
             borderRadius: '10px'
         }}>
-            <p>Загрузка, получение данных</p>
+            <p>Загрузка</p>
         </div>
     );
 };
@@ -251,6 +262,24 @@ const ModalInfo= ({ onClose }) => {
             borderRadius: '10px'
         }}>
             <p>Заполнены не все поля</p>
+        </div>
+    );
+};
+
+const ModalInpsInfo= ({ onClose }) => {
+    return (
+        <div style={{
+            position: 'fixed',
+            top: '20%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'orange',
+            padding: '10px',
+            color: "white",
+            zIndex: 1000,
+            borderRadius: '10px'
+        }}>
+            <p>Необходимо заполнить номер и серию паспорта и дату рождения</p>
         </div>
     );
 };
