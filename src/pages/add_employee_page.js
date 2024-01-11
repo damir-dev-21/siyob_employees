@@ -84,7 +84,7 @@ function AddEmployee() {
             const interval = setInterval(() => {
                 setModalInfoVisible(false);
             }, 3000);
-            clearInterval(interval)
+            //clearInterval(interval)
             return
         }
 
@@ -100,16 +100,19 @@ function AddEmployee() {
                 "inps":inps,
                 "pasport_serial": passportSerial,
                 "passport_number":passportNumber,
-                "files":_files
+                "files":_files,
+                "dob":dateOfBirthday
              })
+
+            
             if (responce.status == 200) {
                 let extractedData = responce.data;
                 setModalLoadingVisible(false);
-                setModalInfoVisible(true);
+                setModalSuccessVisible(true);
                 const interval = setInterval(() => {
-                    setModalInfoVisible(false);
+                    setModalSuccessVisible(false);
                 }, 3000);
-                clearInterval(interval)
+                // clearInterval(interval)
 
                 console.log(extractedData);
             } else {
@@ -127,12 +130,13 @@ function AddEmployee() {
             {modalVisible && <Modal onClose={() => setModalVisible(false)} />}
             {modalLoadingVisible && <ModalLoading onClose={() => setModalVisible(false)} />}
             {modalSuccessVisible && <ModalSuccess onClose={() => setModalVisible(false)} />}
+            {modalInfoVisible && <ModalInfo onClose={() => setModalVisible(false)} />}
 
             <div class="form-container">
-                <input type="text" id="firstname" name="firstname" value={name} placeholder="Имя" />
-                <input type="text" id="lastname" name="lastname" value={surName} placeholder="Фамилия" />
-                <input type="text" id="patronymic" name="patronymic" value={lastName} placeholder="Отчество" />
-                <input type="text" id="position" name="position" placeholder="Должность" />
+                <input type="text" id="firstname" name="firstname" onChange={(e)=>setName(e.target.value)} value={name} placeholder="Имя" />
+                <input type="text" id="lastname" name="lastname" onChange={(e) => setSurname(e.target.value)} value={surName} placeholder="Фамилия" />
+                <input type="text" id="patronymic" name="patronymic" onChange={(e) => setLastName(e.target.value)} value={lastName} placeholder="Отчество" />
+                <input type="text" id="position" name="position" onChange={(e) => setPost(e.target.value)} value={post} placeholder="Должность" />
 
                 <div class="row">
                     <input type='date' id='dateBirthDay' onChange={(e)=>{
@@ -142,7 +146,7 @@ function AddEmployee() {
                     <input type="text" id="passport-series" onChange={(e)=>setPassportSerial(e.target.value)} name="passport-series" placeholder="Серия паспорта" />
                     <input type="text" id="passport-number" onChange={(e) => setPassportNumber(e.target.value)} name="passport-number" placeholder="Номер паспорта" /> 
                 </div>
-                <input type="text" id="inps" value={inps} name="inps" placeholder="ИНПС" />
+                <input type="text" id="inps" onChange={(e) => setInps(e.target.value)} value={inps} name="inps" placeholder="ИНПС" />
                 <button type="button" onClick={() => getData()} class="inps-button">Определить ИНПС</button>
                 <div class="file_select">
                     
@@ -194,9 +198,9 @@ const ModalSuccess = ({ onClose }) => {
             top: '20%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            backgroundColor: 'red',
+            backgroundColor: 'green',
             padding: '10px',
-            color: "green",
+            color: "white",
             zIndex: 1000,
             borderRadius: '10px'
         }}>
@@ -212,9 +216,9 @@ const ModalLoading = ({ onClose }) => {
             top: '20%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            backgroundColor: 'red',
+            backgroundColor: 'orange',
             padding: '10px',
-            color: "orange",
+            color: "white",
             zIndex: 1000,
             borderRadius: '10px'
         }}>
@@ -230,9 +234,9 @@ const ModalInfo= ({ onClose }) => {
             top: '20%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            backgroundColor: 'red',
+            backgroundColor: 'orange',
             padding: '10px',
-            color: "orange",
+            color: "white",
             zIndex: 1000,
             borderRadius: '10px'
         }}>
